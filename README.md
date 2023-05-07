@@ -9,7 +9,7 @@
 ## 사용기술(Tech Stack)
 Language : Java  
 DBMS : MySQL / REDIS
-Java Version : Java 11  
+Java Version : Java 11     
 IDE : Intellij IDEA 2023.3.3 (Ultimate Edition)  
 Test Program : Swagger
 
