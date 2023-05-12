@@ -4,7 +4,8 @@
 목표 : 간이 경매용 사이트 개설하여 구매자와 판매자간 가격을 조율할 수 있는 서버 구현
 
 ## 프로젝트 구조(ERD)
-![image](https://github.com/gopythor/wantedMarket/assets/94863168/81adcf7e-7211-471f-81b9-8f6af9abd4f4)
+![image](https://github.com/gopythor/wantedMarket/assets/94863168/b1cd5f7e-2e42-4716-99ed-b44aa29226ef)
+
 
 
 ## 사용기술(Tech Stack)
