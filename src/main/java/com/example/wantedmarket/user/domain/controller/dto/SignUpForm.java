@@ -1,4 +1,4 @@
-package com.example.wantedmarket.user.domain;
+package com.example.wantedmarket.user.domain.controller.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -23,4 +23,8 @@ public class SignUpForm {
   private String phone;
   @ApiModelProperty(value = "사용자 E-Mail", required = true, example = "naver@naver.com")
   private String email;
+
+  public SignUpForm toServiceDto(){
+    return new SignUpForm(userId, password, name, nickName, phone,email);
+  }
 }

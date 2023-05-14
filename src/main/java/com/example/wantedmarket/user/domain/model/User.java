@@ -1,6 +1,6 @@
 package com.example.wantedmarket.user.domain.model;
 
-import com.example.wantedmarket.user.domain.SignUpForm;
+import com.example.wantedmarket.user.domain.controller.dto.SignUpForm;
 import java.util.Locale;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +21,6 @@ import org.hibernate.envers.AuditOverride;
 @AuditOverride(forClass = BaseEntity.class)
 public class User extends BaseEntity{
   @Id
-  @Column(name = "id", nullable = false)
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @Column(unique = true)
