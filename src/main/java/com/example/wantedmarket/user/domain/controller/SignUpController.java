@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.wantedmarket.user.domain.controller.dto.SignUpForm;
 
 @RestController
-@RequestMapping("/signup")
+@RequestMapping("/signUp")
 @RequiredArgsConstructor
 public class SignUpController {
   private final SignUpService signUpService;
 
-  @PostMapping
+  @PostMapping("/user")
   public ResponseEntity<User> SignUp(@RequestBody SignUpForm form){
     return ResponseEntity.ok(signUpService.signUp(form.toServiceDto()));
   }
