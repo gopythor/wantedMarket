@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.wantedmarket.user.domain.controller.dto.SignUpForm;
 
 @RestController
-@RequestMapping("/signUp")
+@RequestMapping("/sign-up")
 @RequiredArgsConstructor
 public class SignUpController {
   private final SignUpService signUpService;
