@@ -11,10 +11,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.envers.AuditOverride;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,6 +34,9 @@ public class User extends BaseEntity{
   @Column(unique = true)
   private String email;
   private String profile;
+
+  @Column(columnDefinition = "int default 0")
+  private Integer balance;
 
   public static User from(SignUpForm form){
     return User.builder()
