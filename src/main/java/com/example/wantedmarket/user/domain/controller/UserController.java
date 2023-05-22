@@ -42,6 +42,7 @@ public class UserController {
       @RequestBody ChangeBalanceForm form){
       UserVo vo = provider.getUserVo(token);
 
-      return ResponseEntity.ok(userBalanceService.changeBalance(vo.getUserId(), form).getCurrentMoney());
+      return ResponseEntity.ok(
+          userBalanceService.changeBalance(vo.getUserId(), form).getCurrentMoney());
   }
 }

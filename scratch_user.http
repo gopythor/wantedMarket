@@ -1,0 +1,39 @@
+### 회원 가입 ( 유저 )
+POST http://localhost:8080/sign-up/user
+Content-Type: application/json
+
+{
+  "email": "naver@naver.com",
+  "name": "name",
+  "nickName": "nickname",
+  "password": 1,
+  "phone": "010-8888-8888",
+  "userId": "user"
+}
+
+### 로그인 ( 유저 )
+POST http://localhost:8080/sign-in/user
+Content-Type: application/json
+
+{
+  "password": 1,
+  "userId": "user"
+}
+
+### 회원 정보 조회 ( 유저 )
+GET http://localhost:8080/user/get-info
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg0NzgwODc4LCJleHAiOjE2ODQ4NjcyNzh9.RRmPsfyOTOaNAhDmj46My2N4g5hRB8iM8c3ynxPCJoQ
+
+### 잔액 변경 ( 유저 )
+POST http://localhost:8080/user/balance
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg0NzgwMTA4LCJleHAiOjE2ODQ4NjY1MDh9.Hxl9-D34o91lcmQC40lbbQrghovwkp_24-EU6Sf78yQ
+
+{
+  "from": "admin",
+  "message": "잔액변경",
+  "money": 1000
+}
+
+#####################################
