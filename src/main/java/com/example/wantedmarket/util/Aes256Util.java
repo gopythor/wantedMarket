@@ -8,6 +8,7 @@ import org.apache.tomcat.util.codec.binary.Base64;
 
 public class Aes256Util {
   public static String alg = "AES/CBC/PKCS5Padding";
+
   private static final String KEY = "ZEROBASEKEYISZEROBASEKEY";
   private static final String IV = KEY.substring(0,16);
 
