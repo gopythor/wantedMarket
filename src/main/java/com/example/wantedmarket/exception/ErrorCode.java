@@ -15,8 +15,10 @@ public enum ErrorCode {
   LOGIN_CHECK_FAIL(HttpStatus.BAD_REQUEST,"아이디나 패스워드를 확인해주세요."),
 
   // money
-  NOT_ENOUGH_BALANCE(HttpStatus.BAD_REQUEST, "잔액이 부족합니다.");
+  NOT_ENOUGH_BALANCE(HttpStatus.BAD_REQUEST, "잔액이 부족합니다."),
 
+  // auction
+  NOT_FOUND_AUCTION(HttpStatus.BAD_REQUEST,"입찰 실패 : 해당 역경매 글이 존재하지 않습니다.");
   private final HttpStatus httpStatus;
   private final String detail;
 }
