@@ -1,5 +1,6 @@
 package com.example.wantedmarket.order.domain.model;
 
+import com.example.wantedmarket.order.domain.controller.dto.BidDto;
 import com.example.wantedmarket.user.domain.model.User;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,4 +39,12 @@ public class Bid extends BaseEntity{
   private User user;
 
   private Long bid_record;
+
+  public static Bid from(BidDto dto){
+    return Bid.builder()
+        .auction(dto.getAuction())
+        .user(dto.getUser())
+        .bid_record(dto.getBid_record())
+        .build();
+  }
 }

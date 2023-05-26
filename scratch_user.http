@@ -36,4 +36,20 @@ X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iL
   "money": 1000
 }
 
+### 역옥션 등록( 유저 )
+POST http://localhost:8080/auction
+Content-Type: application/json
+X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg0OTU3MTE5LCJleHAiOjE2ODUwNDM1MTl9.jWJ4Qi0W3HKnlw5kLRyjFQLekuC98aVNCdbAiaO0Imc
+
+{
+  "auctionCategory": "BAGS",
+  "auction_description": "string",
+  "auction_price": 1000,
+  "auction_qty": 1,
+  "auction_title": "켈빈클라인 가방"
+}
+
+
+
+
 #####################################

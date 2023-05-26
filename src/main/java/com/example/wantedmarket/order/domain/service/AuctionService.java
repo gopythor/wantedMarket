@@ -12,13 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class AuctionService {
   private final AuctionRepository auctionRepository;
-  private final UserRepository userRepository;
+
 
   @Transactional
   public Auction postAuction(String userId, AuctionDto dto){
-
-    Auction auction = dto.toServiceDto(userId);
-
-    return auctionRepository.save(auction);
+      return auctionRepository.save(Auction.from(userId,dto));
   }
 }

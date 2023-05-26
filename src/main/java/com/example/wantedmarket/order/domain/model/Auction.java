@@ -1,6 +1,8 @@
 package com.example.wantedmarket.order.domain.model;
 
 import com.example.wantedmarket.order.domain.common.AuctionCategory;
+import com.example.wantedmarket.order.domain.controller.dto.AuctionDto;
+import com.example.wantedmarket.user.domain.controller.dto.SignUpForm;
 import com.example.wantedmarket.user.domain.model.User;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -30,7 +32,7 @@ import org.hibernate.envers.Audited;
 @AllArgsConstructor
 @Audited
 @AuditOverride(forClass =  BaseEntity.class)
-public class Auction extends BaseEntity{
+public class Auction extends BaseEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long auction_number;
@@ -46,4 +48,15 @@ public class Auction extends BaseEntity{
   @OrderBy("bid_record asc") // 가격 정렬
   private List<Bid> bid;
 
+
+  public static Auction from(String userId, AuctionDto dto) {
+  return Auction.builder()
+      .user_id(userId)
+      .auctionCategory(dto.getAuctionCategory())
+      .auction_price(dto.getAuction_price())
+      .auction_title(dto.getAuction_title())
+      .auction_qty(dto.getAuction_qty())
+      .auction_description(dto.getAuction_description())
+      .build();
+  }
 }
