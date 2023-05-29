@@ -5,11 +5,13 @@ import com.example.wantedmarket.order.domain.model.Bid;
 import com.example.wantedmarket.user.domain.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Builder
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class BidDto {
@@ -17,15 +19,9 @@ public class BidDto {
   private User user;
   private Auction auction;
 
-  /* Dto -> Entity */
-  public Bid toEntity(){
-    Bid bid = Bid.builder()
-        .bid_record(bid_record)
-        .user(user)
-        .auction(auction)
-        .build();
-
-    return bid;
+  public static BidDto from(Bid bid){
+    return new BidDto(bid.getBid_record(), bid.getUser(), bid.getAuction());
   }
+
 
 }

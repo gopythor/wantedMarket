@@ -23,9 +23,9 @@ public class AuctionController {
   private final AuctionService auctionService;
 
   @PostMapping
-  public ResponseEntity<Auction> post(@RequestHeader(name = "X-AUTH-TOKEN") String token,
+  public ResponseEntity<AuctionDto> post(@RequestHeader(name = "X-AUTH-TOKEN") String token,
       @RequestBody AuctionDto dto){
     UserVo vo = provider.getUserVo(token);
-    return ResponseEntity.ok(auctionService.postAuction(vo.getUserId(),dto));
+    return ResponseEntity.ok(AuctionDto.from(auctionService.postAuction(vo.getUserId(),dto)));
   }
 }

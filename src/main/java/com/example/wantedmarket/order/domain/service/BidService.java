@@ -34,9 +34,7 @@ public class BidService {
     dto.setAuction(auction);
     dto.setBid_record(bidPrice);
 
-    Bid bid = dto.toEntity();
-
-    return bidRepository.save(bid);
+    return bidRepository.save(Bid.from(dto));
   }
 
 }
