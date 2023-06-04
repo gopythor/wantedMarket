@@ -1,0 +1,668 @@
+---
+swagger: '2.0'
+info:
+  description: "[WantedMarket] REST API"
+  version: '1.0'
+  title: API
+  contact:
+    name: "[WantedMarket Swagger]"
+    url: https://github.com/gopythor/
+    email: nowaapple@gmail.com
+host: localhost:8080
+basePath: "/"
+tags:
+- name: auction-controller
+  description: Auction Controller
+- name: bid-contorller
+  description: Bid Contorller
+- name: sign-in-controller
+  description: Sign In Controller
+- name: sign-up-controller
+  description: Sign Up Controller
+- name: user-controller
+  description: User Controller
+consumes:
+- application/json;charset=UTF-8
+- application/x-www-form-urlencoded
+produces:
+- application/json;charset=UTF-8
+paths:
+  "/auction":
+    post:
+      tags:
+      - auction-controller
+      summary: post
+      operationId: postUsingPOST
+      parameters:
+      - in: body
+        name: dto
+        description: dto
+        required: true
+        schema:
+          "$ref": "#/definitions/AuctionDto"
+      - name: X-AUTH-TOKEN
+        in: header
+        description: X-AUTH-TOKEN
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/AuctionDto"
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+      - auction-controller
+      summary: put
+      operationId: putUsingPUT
+      parameters:
+      - in: body
+        name: dto
+        description: dto
+        required: true
+        schema:
+          "$ref": "#/definitions/UpdateAuctionForm"
+      - name: X-AUTH-TOKEN
+        in: header
+        description: X-AUTH-TOKEN
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/AuctionDto"
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+      - auction-controller
+      summary: delete
+      operationId: deleteUsingDELETE
+      parameters:
+      - in: body
+        name: dto
+        description: dto
+        required: true
+        schema:
+          "$ref": "#/definitions/DeleteAuctionForm"
+      - name: X-AUTH-TOKEN
+        in: header
+        description: X-AUTH-TOKEN
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  "/bid":
+    delete:
+      tags:
+      - bid-contorller
+      summary: deleteBid
+      operationId: deleteBidUsingDELETE
+      parameters:
+      - in: body
+        name: form
+        description: form
+        required: true
+        schema:
+          "$ref": "#/definitions/DeleteBidForm"
+      - name: X-AUTH-TOKEN
+        in: header
+        description: X-AUTH-TOKEN
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  "/bid/auction/{number}":
+    post:
+      tags:
+      - bid-contorller
+      summary: bidding
+      operationId: biddingUsingPOST
+      parameters:
+      - in: body
+        name: dto
+        description: dto
+        required: true
+        schema:
+          "$ref": "#/definitions/BidForm"
+      - name: number
+        in: path
+        description: number
+        required: true
+        type: integer
+        format: int64
+      - name: X-AUTH-TOKEN
+        in: header
+        description: X-AUTH-TOKEN
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/BidDto"
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  "/sign-in/user":
+    post:
+      tags:
+      - sign-in-controller
+      summary: signInUser
+      operationId: signInUserUsingPOST
+      parameters:
+      - in: body
+        name: form
+        description: form
+        required: true
+        schema:
+          "$ref": "#/definitions/SignInForm"
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  "/sign-up/user":
+    post:
+      tags:
+      - sign-up-controller
+      summary: SignUp
+      operationId: SignUpUsingPOST
+      parameters:
+      - in: body
+        name: form
+        description: form
+        required: true
+        schema:
+          "$ref": "#/definitions/SignUpForm"
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/User"
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  "/user":
+    put:
+      tags:
+      - user-controller
+      summary: modifyUser
+      operationId: modifyUserUsingPUT
+      parameters:
+      - in: body
+        name: form
+        description: form
+        required: true
+        schema:
+          "$ref": "#/definitions/UpdateUserForm"
+      - name: X-AUTH-TOKEN
+        in: header
+        description: X-AUTH-TOKEN
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/User"
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+      - user-controller
+      summary: deactivateUser
+      operationId: deactivateUserUsingDELETE
+      parameters:
+      - name: X-AUTH-TOKEN
+        in: header
+        description: X-AUTH-TOKEN
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  "/user/balance":
+    post:
+      tags:
+      - user-controller
+      summary: changeBalance
+      operationId: changeBalanceUsingPOST
+      parameters:
+      - in: body
+        name: form
+        description: form
+        required: true
+        schema:
+          "$ref": "#/definitions/ChangeBalanceForm"
+      - name: X-AUTH-TOKEN
+        in: header
+        description: X-AUTH-TOKEN
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: integer
+            format: int32
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  "/user/get-info":
+    get:
+      tags:
+      - user-controller
+      summary: getInfo
+      operationId: getInfoUsingGET
+      parameters:
+      - name: X-AUTH-TOKEN
+        in: header
+        description: X-AUTH-TOKEN
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            "$ref": "#/definitions/UserDto"
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+definitions:
+  Auction:
+    type: object
+    properties:
+      auctionActive:
+        type: boolean
+      auctionCategory:
+        type: string
+        enum:
+        - BAGS
+        - BICYCLES
+        - BOOKS
+        - CAMPING
+        - CARS
+        - CLOTHES
+        - COMPUTERS
+        - COSMETICS
+        - EDUCATION
+        - ELECTRONICS
+        - FOODS
+        - FURNITURE
+        - INFORMATION
+        - MEDICINES
+        - SHOES
+        - STATIONARY
+        - TIME
+        - WATCHES
+      auctionDescription:
+        type: string
+      auctionNumber:
+        type: integer
+        format: int64
+      auctionPrice:
+        type: integer
+        format: int64
+      auctionQty:
+        type: integer
+        format: int64
+      auctionTitle:
+        type: string
+      bids:
+        type: array
+        items:
+          "$ref": "#/definitions/Bid"
+      createdAt:
+        type: string
+        format: date-time
+      modifiedAt:
+        type: string
+        format: date-time
+      userId:
+        type: string
+    title: Auction
+  AuctionDto:
+    type: object
+    properties:
+      auctionCategory:
+        type: string
+        enum:
+        - BAGS
+        - BICYCLES
+        - BOOKS
+        - CAMPING
+        - CARS
+        - CLOTHES
+        - COMPUTERS
+        - COSMETICS
+        - EDUCATION
+        - ELECTRONICS
+        - FOODS
+        - FURNITURE
+        - INFORMATION
+        - MEDICINES
+        - SHOES
+        - STATIONARY
+        - TIME
+        - WATCHES
+      auctionDescription:
+        type: string
+      auctionPrice:
+        type: integer
+        format: int64
+      auctionQty:
+        type: integer
+        format: int64
+      auctionTitle:
+        type: string
+    title: AuctionDto
+  Bid:
+    type: object
+    properties:
+      auction:
+        "$ref": "#/definitions/Auction"
+      bid_record:
+        type: integer
+        format: int64
+      conditions:
+        type: string
+        enum:
+        - NEW
+        - USED_ACCEPTABLE
+        - USED_DAMAGED
+        - USED_GOOD
+        - USED_LIKE_NEW
+        - USED_VERY_GOOD
+      createdAt:
+        type: string
+        format: date-time
+      description:
+        type: string
+      id:
+        type: integer
+        format: int64
+      modifiedAt:
+        type: string
+        format: date-time
+      user:
+        "$ref": "#/definitions/User"
+    title: Bid
+  BidDto:
+    type: object
+    properties:
+      auctionId:
+        type: integer
+        format: int64
+      bid_record:
+        type: integer
+        format: int64
+      conditions:
+        type: string
+        enum:
+        - NEW
+        - USED_ACCEPTABLE
+        - USED_DAMAGED
+        - USED_GOOD
+        - USED_LIKE_NEW
+        - USED_VERY_GOOD
+      description:
+        type: string
+    title: BidDto
+  BidForm:
+    type: object
+    properties:
+      bid_record:
+        type: integer
+        format: int64
+      conditions:
+        type: string
+        enum:
+        - NEW
+        - USED_ACCEPTABLE
+        - USED_DAMAGED
+        - USED_GOOD
+        - USED_LIKE_NEW
+        - USED_VERY_GOOD
+      description:
+        type: string
+    title: BidForm
+  ChangeBalanceForm:
+    type: object
+    properties:
+      from:
+        type: string
+      message:
+        type: string
+      money:
+        type: integer
+        format: int32
+    title: ChangeBalanceForm
+  DeleteAuctionForm:
+    type: object
+    properties:
+      auctionNumber:
+        type: integer
+        format: int64
+    title: DeleteAuctionForm
+  DeleteBidForm:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+    title: DeleteBidForm
+  SignInForm:
+    type: object
+    properties:
+      password:
+        type: string
+      userId:
+        type: string
+    title: SignInForm
+  SignUpForm:
+    type: object
+    required:
+    - email
+    - name
+    - nickName
+    - password
+    - phone
+    - userId
+    properties:
+      email:
+        type: string
+        example: naver@naver.com
+        description: 사용자 E-Mail
+      name:
+        type: string
+        example: name
+        description: 사용자 이름
+      nickName:
+        type: string
+        example: nickname
+        description: 사용자 별명
+      password:
+        type: string
+        example: 1
+        description: 사용자 PW
+      phone:
+        type: string
+        example: 010-8888-8888
+        description: 사용자 전화번호
+      userId:
+        type: string
+        example: user
+        description: 사용자 ID
+    title: SignUpForm
+  UpdateAuctionForm:
+    type: object
+    properties:
+      auctionCategory:
+        type: string
+        enum:
+        - BAGS
+        - BICYCLES
+        - BOOKS
+        - CAMPING
+        - CARS
+        - CLOTHES
+        - COMPUTERS
+        - COSMETICS
+        - EDUCATION
+        - ELECTRONICS
+        - FOODS
+        - FURNITURE
+        - INFORMATION
+        - MEDICINES
+        - SHOES
+        - STATIONARY
+        - TIME
+        - WATCHES
+      auctionDescription:
+        type: string
+      auctionNumber:
+        type: integer
+        format: int64
+      auctionPrice:
+        type: integer
+        format: int64
+      auctionQty:
+        type: integer
+        format: int64
+      auctionTitle:
+        type: string
+    title: UpdateAuctionForm
+  UpdateUserForm:
+    type: object
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      nickName:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      profile:
+        type: string
+    title: UpdateUserForm
+  User:
+    type: object
+    properties:
+      active:
+        type: boolean
+      balance:
+        type: integer
+        format: int32
+      bids:
+        type: array
+        items:
+          "$ref": "#/definitions/Bid"
+      createdAt:
+        type: string
+        format: date-time
+      email:
+        type: string
+      id:
+        type: integer
+        format: int64
+      modifiedAt:
+        type: string
+        format: date-time
+      name:
+        type: string
+      nickName:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      profile:
+        type: string
+      userId:
+        type: string
+    title: User
+  UserDto:
+    type: object
+    properties:
+      balance:
+        type: integer
+        format: int32
+      id:
+        type: integer
+        format: int64
+      userId:
+        type: string
+    title: UserDto
