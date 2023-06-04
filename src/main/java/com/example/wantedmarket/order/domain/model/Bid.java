@@ -1,8 +1,12 @@
 package com.example.wantedmarket.order.domain.model;
 
+import com.example.wantedmarket.order.domain.common.Conditions;
 import com.example.wantedmarket.order.domain.controller.dto.BidDto;
+import com.example.wantedmarket.order.domain.controller.dto.BidForm;
 import com.example.wantedmarket.user.domain.model.User;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +21,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.envers.AuditOverride;
 import org.hibernate.envers.Audited;
-
 
 @Setter
 @Getter
@@ -42,12 +45,18 @@ public class Bid extends BaseEntity{
   private User user;
 
   private Long bid_record;
+  private String description;
 
-  public static Bid from(BidDto dto){
+  @Enumerated(value = EnumType.STRING)
+  private Conditions conditions;
+
+  public static Bid of(Auction auction, User user,  BidForm dto){
     return Bid.builder()
-        .auction(dto.getAuction())
-        .user(dto.getUser())
+        .auction(auction)
+        .user(user)
         .bid_record(dto.getBid_record())
+        .description(dto.getDescription())
+        .conditions(dto.getConditions())
         .build();
   }
 }
