@@ -23,7 +23,7 @@ Content-Type: application/json
 ### 회원 정보 조회 ( 유저 )
 GET http://localhost:8080/user/get-info
 Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1NDc3NDM2LCJleHAiOjE2ODU1NjM4MzZ9.bIn-mpCBHlczP82FaoQxbKvaoDCryev8db7EP0XKBss
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1ODc1NTE2LCJleHAiOjE2ODU5NjE5MTZ9.hU05oS-izc-0KRKXefbixDXDo3wPf3Ju_gkQkz-aQhI
 
 ### 잔액 변경 ( 유저 )
 POST http://localhost:8080/user/balance
