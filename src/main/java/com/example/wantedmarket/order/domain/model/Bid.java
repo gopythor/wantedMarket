@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,12 +18,14 @@ import lombok.Setter;
 import org.hibernate.envers.AuditOverride;
 import org.hibernate.envers.Audited;
 
-@Entity
+
 @Setter
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "bids")
+@Entity
 @Audited
 @AuditOverride(forClass =  BaseEntity.class)
 public class Bid extends BaseEntity{
@@ -31,7 +34,7 @@ public class Bid extends BaseEntity{
   private Long id;
 
   @ManyToOne
-  @JoinColumn(name = "auction_id")
+  @JoinColumn(name = "auction_number")
   private Auction auction;
 
   @ManyToOne(fetch = FetchType.LAZY)

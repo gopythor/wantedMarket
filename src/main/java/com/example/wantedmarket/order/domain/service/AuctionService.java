@@ -6,6 +6,7 @@ import static com.example.wantedmarket.exception.ErrorCode.NOT_FOUND_AUCTION;
 
 import com.example.wantedmarket.exception.CustomException;
 import com.example.wantedmarket.order.domain.controller.dto.AuctionDto;
+import com.example.wantedmarket.order.domain.controller.dto.DeleteAuctionForm;
 import com.example.wantedmarket.order.domain.controller.dto.UpdateAuctionForm;
 import com.example.wantedmarket.order.domain.model.Auction;
 import com.example.wantedmarket.order.domain.repository.AuctionRepository;
@@ -49,6 +50,12 @@ public class AuctionService {
     Auction auction = auctionRepository.findByUserIdAndAuctionNumber(
         userId, dto.getAuctionNumber()).orElseThrow(
         () -> new CustomException(NOT_FOUND_AUCTION));
+
+    // 역경매가 삭제되었거나 정상적인 상태가 아님.
+    if(auction.getAuctionActive().equals(false)){
+      throw new CustomException(NOT_FOUND_AUCTION);
+    }
+
     auction.setAuctionCategory(dto.getAuctionCategory());
     auction.setAuctionTitle(dto.getAuctionTitle());
     auction.setAuctionDescription(dto.getAuctionDescription());
@@ -58,11 +65,17 @@ public class AuctionService {
   }
 
   @Transactional
-  public void deleteAuction(String userId, Long auctionNumber){
+  public void deleteAuction(String userId, DeleteAuctionForm dto){
     Auction auction = auctionRepository.findByUserIdAndAuctionNumber(
-        userId, auctionNumber).orElseThrow(
+        userId, dto.getAuctionNumber()).orElseThrow(
         () -> new CustomException(NOT_FOUND_AUCTION));
-    auctionRepository.delete(auction);
+
+    // 역경매가 삭제되었거나 정상적인 상태가 아님.
+    if(auction.getAuctionActive().equals(false)){
+      throw new CustomException(NOT_FOUND_AUCTION);
+    }
+
+    auction.setAuctionActive(false);
   }
 
 }

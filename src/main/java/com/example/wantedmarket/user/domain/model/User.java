@@ -1,23 +1,31 @@
 package com.example.wantedmarket.user.domain.model;
 
+import com.example.wantedmarket.order.domain.model.Bid;
 import com.example.wantedmarket.user.domain.controller.dto.SignUpForm;
+import java.util.List;
 import java.util.Locale;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.envers.AuditOverride;
+import org.hibernate.envers.Audited;
 
 @Entity
 @Getter
 @Setter
 @Builder
+@Audited
 @NoArgsConstructor
 @AllArgsConstructor
 @AuditOverride(forClass = BaseEntity.class)
@@ -37,6 +45,10 @@ public class User extends BaseEntity{
 
   @Column(columnDefinition = "int default 0")
   private Integer balance;
+
+  @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+  @OrderBy("bid_record asc") // 댓글 정렬
+  private List<Bid> bids;
 
   public static User from(SignUpForm form){
     return User.builder()
