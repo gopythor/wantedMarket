@@ -2,11 +2,11 @@ package com.example.wantedmarket.order.domain.model;
 
 import com.example.wantedmarket.order.domain.common.AuctionCategory;
 import com.example.wantedmarket.order.domain.controller.dto.AuctionDto;
-import com.example.wantedmarket.user.domain.controller.dto.SignUpForm;
-import com.example.wantedmarket.user.domain.model.User;
+import com.example.wantedmarket.util.BooleanToYNConverter;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,6 +21,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.envers.AuditOverride;
 import org.hibernate.envers.Audited;
 
@@ -35,28 +36,35 @@ import org.hibernate.envers.Audited;
 public class Auction extends BaseEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long auction_number;
-  private String user_id;
+  @Column(name ="auction_number", unique = true)
+  private Long auctionNumber;
+
+  private String userId;
+
   @Enumerated(value = EnumType.STRING)
   private AuctionCategory auctionCategory;
-  private Long auction_price;
-  private String auction_title;
-  private Long auction_qty;
-  private String auction_description;
+  private Long auctionPrice;
+  private String auctionTitle;
+  private Long auctionQty;
+  private String auctionDescription;
+
+  @Convert(converter = BooleanToYNConverter.class)
+  private Boolean auctionActive;
 
   @OneToMany(mappedBy = "auction", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
   @OrderBy("bid_record asc") // 가격 정렬
-  private List<Bid> bid;
+  private List<Bid> bids;
 
 
   public static Auction from(String userId, AuctionDto dto) {
   return Auction.builder()
-      .user_id(userId)
+      .userId(userId)
       .auctionCategory(dto.getAuctionCategory())
-      .auction_price(dto.getAuction_price())
-      .auction_title(dto.getAuction_title())
-      .auction_qty(dto.getAuction_qty())
-      .auction_description(dto.getAuction_description())
+      .auctionPrice(dto.getAuctionPrice())
+      .auctionTitle(dto.getAuctionTitle())
+      .auctionQty(dto.getAuctionQty())
+      .auctionDescription(dto.getAuctionDescription())
+      .auctionActive(true)
       .build();
   }
 }
