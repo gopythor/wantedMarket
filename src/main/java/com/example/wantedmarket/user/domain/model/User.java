@@ -2,10 +2,12 @@ package com.example.wantedmarket.user.domain.model;
 
 import com.example.wantedmarket.order.domain.model.Bid;
 import com.example.wantedmarket.user.domain.controller.dto.SignUpForm;
+import com.example.wantedmarket.util.BooleanToYNConverter;
 import java.util.List;
 import java.util.Locale;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -43,6 +45,9 @@ public class User extends BaseEntity{
   private String email;
   private String profile;
 
+  @Convert(converter = BooleanToYNConverter.class)
+  private Boolean active;
+
   @Column(columnDefinition = "int default 0")
   private Integer balance;
 
@@ -59,6 +64,7 @@ public class User extends BaseEntity{
         .phone(form.getPhone())
         .email(form.getEmail().toLowerCase(Locale.ROOT))
         .profile("default.png")
+        .active(true)
         .build();
   }
 

@@ -1,4 +1,4 @@
-### 회원 가입 ( 유저 )
+### 회원 가입 ( 유저1 )
 POST http://localhost:8080/sign-up/user
 Content-Type: application/json
 
@@ -11,7 +11,21 @@ Content-Type: application/json
   "userId": "user"
 }
 
-### 로그인 ( 유저 )
+
+### 회원 가입 ( 유저2 )
+POST http://localhost:8080/sign-up/user
+Content-Type: application/json
+
+{
+  "email": "second@naver.com",
+  "name": "name",
+  "nickName": "nickname",
+  "password": 1,
+  "phone": "010-8888-8888",
+  "userId": "second"
+}
+
+### 로그인 ( 유저1 )
 POST http://localhost:8080/sign-in/user
 Content-Type: application/json
 
@@ -20,15 +34,24 @@ Content-Type: application/json
   "userId": "user"
 }
 
+### 로그인 ( 유저2 )
+POST http://localhost:8080/sign-in/user
+Content-Type: application/json
+
+{
+  "password": 1,
+  "userId": "second"
+}
+
 ### 회원 정보 조회 ( 유저 )
 GET http://localhost:8080/user/get-info
 Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1NDc3NDM2LCJleHAiOjE2ODU1NjM4MzZ9.bIn-mpCBHlczP82FaoQxbKvaoDCryev8db7EP0XKBss
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1ODg3MTU1LCJleHAiOjE2ODU5NzM1NTV9.-1tGp4hFzX6WCEEhv-mC2QCeCXcozaK56rGj0Grw5Bg
 
 ### 잔액 변경 ( 유저 )
 POST http://localhost:8080/user/balance
 Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1NDc2Nzg0LCJleHAiOjE2ODU1NjMxODR9.JF6azRLupU4F7len7ZQjoWiltJkp0lWr5GmPzI3QrhQ
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1ODg3MTU1LCJleHAiOjE2ODU5NzM1NTV9.-1tGp4hFzX6WCEEhv-mC2QCeCXcozaK56rGj0Grw5Bg
 
 {
   "from": "admin",
@@ -36,10 +59,31 @@ X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iL
   "money": 1000
 }
 
+### 회원 정보수정 (유저)
+PUT http://localhost:8080/user/
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1ODg3MTU1LCJleHAiOjE2ODU5NzM1NTV9.-1tGp4hFzX6WCEEhv-mC2QCeCXcozaK56rGj0Grw5Bg
+
+{
+  "email": "string",
+  "name": "string",
+  "nickName": "string",
+  "password": "string",
+  "phone": "string",
+  "profile": "string"
+}
+
+
+
+### 회원 삭제 ( 유저 )
+DELETE http://localhost:8080/user/
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1ODkwMDIyLCJleHAiOjE2ODU5NzY0MjJ9.XYJETzVqfSAEy1lo_FGunAF7pzrJMnByo19cTcy94Z4
+
 ### 역옥션 등록( 유저 )
 POST http://localhost:8080/auction
 Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1ODU5OTEwLCJleHAiOjE2ODU5NDYzMTB9.4zQXp3peOCB4YOeD-wpeDTtTuASe4qbkTC-Divnj570
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1OTAzOTU1LCJleHAiOjE2ODU5OTAzNTV9.AGXRkXQLTS3yJC8RoforQi9zAQbdzTIJxq_AY3bsmOM
 
 {
   "auctionCategory": "BAGS",
@@ -52,7 +96,7 @@ X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iL
 ### 역옥션 수정( 유저 )
 PUT http://localhost:8080/auction
 Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1ODU5OTEwLCJleHAiOjE2ODU5NDYzMTB9.4zQXp3peOCB4YOeD-wpeDTtTuASe4qbkTC-Divnj570
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1OTAzOTU1LCJleHAiOjE2ODU5OTAzNTV9.AGXRkXQLTS3yJC8RoforQi9zAQbdzTIJxq_AY3bsmOM
 
 {
   "auctionCategory": "BAGS",
@@ -70,6 +114,33 @@ X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iL
 
 {
   "auctionNumber": 1
+}
+
+
+### 입찰 ( 유저 )
+
+< {%
+    request.variables.set("number", "1")
+%}
+
+POST http://localhost:8080/bid/auction/{{number}}
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1OTAzOTU1LCJleHAiOjE2ODU5OTAzNTV9.AGXRkXQLTS3yJC8RoforQi9zAQbdzTIJxq_AY3bsmOM
+
+{
+  "bid_record": 999999,
+  "conditions": "NEW",
+  "description": "새거입니다."
+}
+
+
+### 입찰 취소( 유저 )
+DELETE http://localhost:8080/bid/
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ6Q0diclhScGJ3cmU1MFU5eVNmM2VBPT0iLCJqdGkiOiJTdWJIZUtVUlJyZVFZK1dTT25Ca3RnPT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1OTA0NDE4LCJleHAiOjE2ODU5OTA4MTh9.8F1fuLZvVaJt9KT6JVXS7E88CGEeZj4_rlALnfrk12o
+
+{
+  "id": 6
 }
 
 #####################################

@@ -1,10 +1,14 @@
 package com.example.wantedmarket.order.domain.service;
 
+import static com.example.wantedmarket.exception.ErrorCode.HIGH_BID_PRICE;
 import static com.example.wantedmarket.exception.ErrorCode.NOT_FOUND_AUCTION;
+import static com.example.wantedmarket.exception.ErrorCode.NOT_FOUND_BID;
 import static com.example.wantedmarket.exception.ErrorCode.NOT_FOUND_USER;
 
 import com.example.wantedmarket.exception.CustomException;
 import com.example.wantedmarket.order.domain.controller.dto.BidDto;
+import com.example.wantedmarket.order.domain.controller.dto.BidForm;
+import com.example.wantedmarket.order.domain.controller.dto.DeleteBidForm;
 import com.example.wantedmarket.order.domain.model.Auction;
 import com.example.wantedmarket.order.domain.model.Bid;
 import com.example.wantedmarket.order.domain.repository.AuctionRepository;
@@ -23,7 +27,7 @@ public class BidService {
   private final AuctionRepository auctionRepository;
 
   @Transactional
-  public Bid bidSave(String userId, Long auction_number, Long bidPrice){
+  public Bid bidSave(String userId, Long auction_number, BidForm dto){
     User user = userRepository.findByUserId(userId).orElseThrow(
         () -> new CustomException(NOT_FOUND_USER));
     Auction auction = auctionRepository.findById(auction_number).orElseThrow(
@@ -34,12 +38,14 @@ public class BidService {
       throw new CustomException(NOT_FOUND_AUCTION);
     }
 
-    BidDto dto = new BidDto();
-    dto.setUser(user);
-    dto.setAuction(auction);
-    dto.setBid_record(bidPrice);
+    return bidRepository.save(Bid.of(auction, user, dto));
+  }
 
-    return bidRepository.save(Bid.from(dto));
+  @Transactional
+  public void bidDelete(String userId, DeleteBidForm form){
+    Bid bid = bidRepository.findByUser_UserIdAndId(userId,form.getId())
+        .orElseThrow(() -> new CustomException(NOT_FOUND_BID));
+    bidRepository.delete(bid);
   }
 
 }
