@@ -15,21 +15,17 @@ import lombok.Setter;
 @Builder
 public class AuctionDto {
   @ApiModelProperty(hidden = true)
-  private String user_id;
+  private String userId;
   private AuctionCategory auctionCategory;
-  private Long auction_price;
-  private String auction_title;
-  private Long auction_qty;
-  private String auction_description;
+  private Long auctionPrice;
+  private String auctionTitle;
+  private Long auctionQty;
+  private String auctionDescription;
 
 
   public static AuctionDto from(Auction auction){
-    return new AuctionDto(auction.getUser_id(), auction.getAuctionCategory(),
-        auction.getAuction_price(), auction.getAuction_title(),
-        auction.getAuction_qty(), auction.getAuction_description());
+    return new AuctionDto(auction.getUserId(), auction.getAuctionCategory(),
+        auction.getAuctionPrice(), auction.getAuctionTitle(),
+        auction.getAuctionQty(), auction.getAuctionDescription());
   }
-
-
-
-
 }

@@ -35,14 +35,14 @@ import org.hibernate.envers.Audited;
 public class Auction extends BaseEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long auction_number;
-  private String user_id;
+  private Long auctionNumber;
+  private String userId;
   @Enumerated(value = EnumType.STRING)
   private AuctionCategory auctionCategory;
-  private Long auction_price;
-  private String auction_title;
-  private Long auction_qty;
-  private String auction_description;
+  private Long auctionPrice;
+  private String auctionTitle;
+  private Long auctionQty;
+  private String auctionDescription;
 
   @OneToMany(mappedBy = "auction", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
   @OrderBy("bid_record asc") // 가격 정렬
@@ -51,12 +51,12 @@ public class Auction extends BaseEntity {
 
   public static Auction from(String userId, AuctionDto dto) {
   return Auction.builder()
-      .user_id(userId)
+      .userId(userId)
       .auctionCategory(dto.getAuctionCategory())
-      .auction_price(dto.getAuction_price())
-      .auction_title(dto.getAuction_title())
-      .auction_qty(dto.getAuction_qty())
-      .auction_description(dto.getAuction_description())
+      .auctionPrice(dto.getAuctionPrice())
+      .auctionTitle(dto.getAuctionTitle())
+      .auctionQty(dto.getAuctionQty())
+      .auctionDescription(dto.getAuctionDescription())
       .build();
   }
 }
