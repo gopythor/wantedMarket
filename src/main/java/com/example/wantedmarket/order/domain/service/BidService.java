@@ -29,6 +29,11 @@ public class BidService {
     Auction auction = auctionRepository.findById(auction_number).orElseThrow(
         () -> new CustomException(NOT_FOUND_AUCTION));
 
+    // 역경매가 삭제되었거나 정상적인 상태가 아님.
+    if(auction.getAuctionActive().equals(false)){
+      throw new CustomException(NOT_FOUND_AUCTION);
+    }
+
     BidDto dto = new BidDto();
     dto.setUser(user);
     dto.setAuction(auction);

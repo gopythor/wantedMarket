@@ -2,6 +2,7 @@ package com.example.wantedmarket.order.domain.controller;
 
 import com.example.wantedmarket.config.JwtAuthenticationProvider;
 import com.example.wantedmarket.order.domain.controller.dto.AuctionDto;
+import com.example.wantedmarket.order.domain.controller.dto.DeleteAuctionForm;
 import com.example.wantedmarket.order.domain.controller.dto.UpdateAuctionForm;
 import com.example.wantedmarket.order.domain.service.AuctionService;
 import com.example.wantedmarket.user.domain.common.UserVo;
@@ -40,9 +41,9 @@ public class AuctionController {
 
   @DeleteMapping
   public ResponseEntity<?> delete(@RequestHeader(name = "X-AUTH-TOKEN") String token,
-      @RequestParam Long id){
+      @RequestBody DeleteAuctionForm dto){
     UserVo vo = provider.getUserVo(token);
-    auctionService.deleteAuction(vo.getUserId(), id);
+    auctionService.deleteAuction(vo.getUserId(), dto);
     return ResponseEntity.ok().build();
   }
 }

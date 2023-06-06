@@ -23,12 +23,12 @@ Content-Type: application/json
 ### 회원 정보 조회 ( 유저 )
 GET http://localhost:8080/user/get-info
 Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg0NzgwODc4LCJleHAiOjE2ODQ4NjcyNzh9.RRmPsfyOTOaNAhDmj46My2N4g5hRB8iM8c3ynxPCJoQ
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1NDc3NDM2LCJleHAiOjE2ODU1NjM4MzZ9.bIn-mpCBHlczP82FaoQxbKvaoDCryev8db7EP0XKBss
 
 ### 잔액 변경 ( 유저 )
 POST http://localhost:8080/user/balance
 Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg0NzgwMTA4LCJleHAiOjE2ODQ4NjY1MDh9.Hxl9-D34o91lcmQC40lbbQrghovwkp_24-EU6Sf78yQ
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1NDc2Nzg0LCJleHAiOjE2ODU1NjMxODR9.JF6azRLupU4F7len7ZQjoWiltJkp0lWr5GmPzI3QrhQ
 
 {
   "from": "admin",
@@ -39,17 +39,37 @@ X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iL
 ### 역옥션 등록( 유저 )
 POST http://localhost:8080/auction
 Content-Type: application/json
-X-AUTH-TOKEN:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg0OTU3MTE5LCJleHAiOjE2ODUwNDM1MTl9.jWJ4Qi0W3HKnlw5kLRyjFQLekuC98aVNCdbAiaO0Imc
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1ODU5OTEwLCJleHAiOjE2ODU5NDYzMTB9.4zQXp3peOCB4YOeD-wpeDTtTuASe4qbkTC-Divnj570
 
 {
   "auctionCategory": "BAGS",
-  "auction_description": "string",
-  "auction_price": 1000,
-  "auction_qty": 1,
-  "auction_title": "켈빈클라인 가방"
+  "auctionDescription": "string",
+  "auctionPrice": 1000,
+  "auctionQty": 10,
+  "auctionTitle": "켈비클라인가방"
 }
 
+### 역옥션 수정( 유저 )
+PUT http://localhost:8080/auction
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1ODU5OTEwLCJleHAiOjE2ODU5NDYzMTB9.4zQXp3peOCB4YOeD-wpeDTtTuASe4qbkTC-Divnj570
 
+{
+  "auctionCategory": "BAGS",
+  "auctionNumber": 1,
+  "auctionDescription": "string",
+  "auctionPrice": 10000,
+  "auctionQty": 10,
+  "auctionTitle": "string"
+}
 
+### 역옥션 삭제( 유저 )
+DELETE http://localhost:8080/auction
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNFdqdHRxUzZteHEzYmF5Qm1paldBPT0iLCJqdGkiOiJDbVlEdjVNSzVZVXlpazhLR05Ed293PT0iLCJyb2xlcyI6IkNVU1RPTUVSIiwiaWF0IjoxNjg1ODU5Nzc1LCJleHAiOjE2ODU5NDYxNzV9.1NH1T33X5iX0B4J054mVOTXWcZhhWi7KSS4A2JMVg2s
+
+{
+  "auctionNumber": 1
+}
 
 #####################################
