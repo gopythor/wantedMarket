@@ -12,6 +12,7 @@ import com.example.wantedmarket.user.domain.user.ChangeBalanceForm;
 import com.example.wantedmarket.user.domain.user.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,9 +41,15 @@ public class UserController {
   @PostMapping("/balance")
   public ResponseEntity<Integer> changeBalance(@RequestHeader(name = "X-AUTH-TOKEN") String token,
       @RequestBody ChangeBalanceForm form){
-      UserVo vo = provider.getUserVo(token);
+    UserVo vo = provider.getUserVo(token);
 
-      return ResponseEntity.ok(
+    return ResponseEntity.ok(
           userBalanceService.changeBalance(vo.getUserId(), form).getCurrentMoney());
   }
+  @DeleteMapping
+  public void deactivateUser(@RequestHeader(name = "X-AUTH-TOKEN") String token){
+    UserVo vo = provider.getUserVo(token);
+    userService.deactivateId(vo.getUserId());
+  }
+
 }
